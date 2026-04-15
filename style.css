@@ -1,0 +1,20 @@
+:root {
+    --bg: #0f1115;
+    --text: #e6e6eb;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-size: 18px;
+    height: 100vh;
+    margin: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.middle {
+    text-align: center;
+}
