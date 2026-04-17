@@ -2,25 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Enter Code</title>
-    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="middle">
-        <h2>Enter Access Code</h2>
+<input type="password" id="codeInput">
+<button onclick="checkCode()">Submit</button>
 
-        <input type="password" id="codeInput" placeholder="Enter Code">
-        <button id="submitBtn">Submit</button>
+<div id="gameAccess" style="display:none;">
+    <button onclick="openGame()">ULTRAKILL</button>
+</div>
 
-        <div id="gameAccess" style="display:none;">
-            <h3>Access Granted!</h3>
-            <button onclick="openGame()">ULTRAKILL</button>
-            <button onclick="openYandere()">Yandere</button>
-        </div>
-    </div>
-
-    <script type="module" src="script.js"></script>
+<script src="script.js"></script> <!-- remove type="module" -->
 </body>
 </html>
