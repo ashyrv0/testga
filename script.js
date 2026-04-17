@@ -1,12 +1,28 @@
-const correctCode = "foidslayer911";
-
-function checkCode() {
+async function checkCode() {
     const input = document.getElementById("codeInput").value;
-
-    if (input === correctCode) {
-        document.getElementById("gameAccess").style.display = "block";
-    } else {
-        alert("Wrong code");
+    
+    if (!input) {
+        alert("Please enter a code");
+        return;
+    }
+    
+    try {
+        const response = await fetch('/api/checkCode', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ code: input })
+        });
+        
+        const data = await response.json();
+        
+        if (data.valid) {
+            document.getElementById("gameAccess").style.display = "block";
+        } else {
+            alert("Wrong code");
+        }
+    } catch (error) {
+        console.error('Error checking code:', error);
+        alert("Error checking code. Try again.");
     }
 }
 
