@@ -10,4 +10,7 @@ function checkCode() {
     }
 }
 
-document.getElementById("submitBtn").addEventListener("click", checkCode);
+function openGame() {
+    sessionStorage.setItem("access", "granted");
+    window.location.href = "ultrakill/index.html";
+}
