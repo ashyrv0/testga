@@ -1,14 +1,3 @@
-import { inject } from "@vercel/analytics"
-
-// Initialize analytics on page load
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-        inject();
-    });
-} else {
-    inject();
-}
-
 const correctCode = "foidslayer911";
 
 function checkCode() {
