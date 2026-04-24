@@ -31,6 +31,7 @@ function openUltrakill() {
     window.location.href = "ultrakill/index.html";
 }
 
+<<<<<<< HEAD
 function showKindergarten() {
     const menu = document.getElementById("kindergartenMenu");
 
@@ -50,3 +51,9 @@ function openK2() {
     sessionStorage.setItem("access", "granted");
     window.location.href = "kindergarden/2/index.html";
 }
+=======
+function openYandere() {
+    sessionStorage.setItem("access", "granted");
+    window.location.href = "yandere/index.html";
+}
+>>>>>>> 75293ec847d31ab02c9c83a320025f55d178e36e

@@ -37,4 +37,8 @@
         // Prevent any scripts from running
         throw new Error('Access denied');
     }
+<<<<<<< HEAD
 })();
+=======
+})();
+>>>>>>> 75293ec847d31ab02c9c83a320025f55d178e36e
