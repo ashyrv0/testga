@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter Code</title>
+    <link rel="icon" type="image/x-icon" href="/icon.ico">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="middle">
+        <h2>Enter Access Code</h2>
+
+        <input type="password" id="codeInput" placeholder="Enter Code">
+        <button onclick="checkCode()">Submit</button>
+
+        <div id="gameAccess" style="display:none;">
+            <h3>Access Granted!</h3>
+            <button onclick="openUltrakill()">ULTRAKILL</button>
+            <button onclick="showKindergarten()">Kindergarten 1 or 2</button>
+            <div id="kindergartenMenu" style="display:none; margin-top:10px;">
+                <div id="kindergartenMenu" style="display:none; margin-top:10px;">
+                    <button onclick="openK1()">Kindergarten 1</button>
+                    <button onclick="openK2()">Kindergarten 2</button>
+                    </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script defer src="https://cdn.vercel-analytics.com/v1/analytics.js"></script>
+</body>
+</html>
