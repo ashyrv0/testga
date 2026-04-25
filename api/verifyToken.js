@@ -5,10 +5,15 @@ export default function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  // Get token from cookies
+  // Get token from cookies or request body
   const cookies = req.headers.cookie || '';
   const tokenMatch = cookies.match(/accessToken=([^;]*)/);
-  const token = tokenMatch ? tokenMatch[1] : null;
+  let token = tokenMatch ? tokenMatch[1] : null;
+
+  // If no cookie, check if token was sent in body (from localStorage)
+  if (!token && req.body && req.body.token) {
+    token = req.body.token;
+  }
 
   if (!token) {
     return res.status(401).json({ valid: false });
