@@ -1,17 +1,11 @@
 // Access check - runs immediately on page load
 (function() {
-  // Read the accessToken from cookies
-  const cookies = document.cookie.split(';');
-  let hasValidToken = false;
+  // Check for token in cookies or localStorage
+  const cookies = document.cookie;
+  const localToken = localStorage.getItem('accessToken');
+  
+  let hasValidToken = cookies.includes('accessToken=') || localToken;
 
-  for (let cookie of cookies) {
-    if (cookie.trim().startsWith('accessToken=')) {
-      hasValidToken = true;
-      break;
-    }
-  }
-
-  // Optional: Verify token with backend (more secure)
   if (hasValidToken) {
     fetch('/api/verifyToken', {
       method: 'POST',
@@ -29,7 +23,6 @@
   }
 
   function blockAccess() {
-    // Clear the page
     document.documentElement.innerHTML = '';
     document.body.innerHTML = '';
 
