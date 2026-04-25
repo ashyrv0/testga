@@ -119,6 +119,9 @@ function openK2() {
     window.location.href = "/Kindergarten/2/index.html";
 }
 
+function openUltrakill() {
+    window.location.href = "/ultrakill/index.html";
+}
 
 // TIME DISPLAY
 function updateTime() {
