@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (!data.allowed) {
                 document.getElementById("infoText").textContent =
-                    "Already clicked today.";
+                    "Already annihilated a foid today.";
                 return;
             }
 
