@@ -16,6 +16,9 @@
       .then(data => {
         if (!data.valid) {
           blockAccess();
+        } else {
+          // Token is valid, allow access
+          document.dispatchEvent(new Event('accessGranted'));
         }
       })
       .catch(() => blockAccess());
