@@ -26,5 +26,10 @@ iframe {
 </head>
 <body>
 <iframe src="https://truffled.lol/games/osu!/index.html" allowfullscreen></iframe>
+    <script>
+        document.addEventListener('accessGranted', () => {
+            document.querySelector('iframe').style.display = 'fixed';
+        });
+    </script>
 </body>
 </html>
