@@ -1,6 +1,5 @@
 import jwt from 'jsonwebtoken';
 
-// Simple in-memory rate limiting
 const attempts = new Map();
 
 export default function handler(req, res) {
@@ -19,7 +18,6 @@ export default function handler(req, res) {
   const limit = 5;
   const window = 15 * 60 * 1000;
 
-  // Rate limiting check
   if (!attempts.has(clientIp)) {
     attempts.set(clientIp, []);
   }
@@ -27,7 +25,7 @@ export default function handler(req, res) {
   const ipAttempts = attempts.get(clientIp).filter(time => now - time < window);
 
   if (ipAttempts.length >= limit) {
-    return res.status(429).json({ error: 'Too many attempts. Try again in 15 minutes.' });
+    return res.status(429).json({ error: 'Too many attempts' });
   }
 
   ipAttempts.push(now);
@@ -36,22 +34,22 @@ export default function handler(req, res) {
   const correctCode = process.env.ACCESS_CODE;
 
   if (!correctCode) {
-    console.error('ACCESS_CODE environment variable not set');
-    return res.status(500).json({ error: 'Server configuration error' });
+    console.error('ACCESS_CODE not set');
+    return res.status(500).json({ error: 'Server error' });
   }
 
   if (code === correctCode) {
-    // Generate JWT token
     const token = jwt.sign(
       { access: 'granted', iat: Date.now() },
       process.env.JWT_SECRET,
       { expiresIn: '24h' }
     );
 
-    // Set secure cookie
-    res.setHeader('Set-Cookie', `accessToken=${token}; Path=/; HttpOnly; Secure; SameSite=Strict; Max-Age=86400`);
+    res.setHeader('Set-Cookie', [
+      `accessToken=${token}; Path=/; HttpOnly; Secure; SameSite=Strict; Max-Age=86400`
+    ]);
 
-    return res.status(200).json({ valid: true });
+    return res.status(200).json({ valid: true, token });
   } else {
     return res.status(200).json({ valid: false });
   }
