@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (!data.allowed) {
                 document.getElementById("infoText").textContent =
-                    "Already annihilated a foid.";
+                    "Already clicked today.";
                 return;
             }
 
@@ -51,14 +51,17 @@ async function checkCode() {
         const data = await res.json();
 
         if (data.valid) {
-            document.getElementById("loginSection").style.display = "none";
-            document.getElementById("gameAccess").style.display = "block";
-            document.getElementById("popup").style.display = "block";
+    // Store token in localStorage as fallback
+    localStorage.setItem('accessToken', data.token);
+    
+    document.getElementById("loginSection").style.display = "none";
+    document.getElementById("gameAccess").style.display = "block";
+    document.getElementById("popup").style.display = "block";
 
-            loadCounter();
-        } else {
-            triggerError(inputEl, submitBtn);
-        }
+    loadCounter();
+} else {
+    triggerError(inputEl, submitBtn);
+}
 
     } catch (err) {
         console.error("Error:", err);
