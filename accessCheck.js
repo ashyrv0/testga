@@ -1,6 +1,5 @@
 // Access check - runs immediately on page load
 (function() {
-  // Check for token in cookies or localStorage
   const cookies = document.cookie;
   const localToken = localStorage.getItem('accessToken');
   
@@ -9,7 +8,9 @@
   if (hasValidToken) {
     fetch('/api/verifyToken', {
       method: 'POST',
-      credentials: 'include'
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify({ token: localToken })
     })
       .then(res => res.json())
       .then(data => {
