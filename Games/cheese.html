@@ -25,10 +25,12 @@
     </style>
 </head>
 <body>
-    <iframe src="https://truffled.lol/gamefile/cheese.html" allowfullscreen></iframe>
     <script>
         document.addEventListener('accessGranted', () => {
-            document.querySelector('iframe').style.display = 'fixed';
+            const iframe = document.createElement('iframe');
+            iframe.src = 'https://truffled.lol/gamefile/cheese.html';
+            iframe.allowFullscreen = true;
+            document.body.appendChild(iframe);
         });
     </script>
 </body>
