@@ -69,7 +69,6 @@ async function checkCode() {
     }
 }
 
-
 // ERROR EFFECT
 function triggerError(inputEl, submitBtn) {
     inputEl.classList.remove("input-error");
@@ -112,15 +111,15 @@ function showKindergarten() {
 }
 
 function openK1() {
-    window.location.href = "/Kindergarten/1/index.html";
+    window.location.href = "/Games/Kindergarten/1/index.html";
 }
 
 function openK2() {
-    window.location.href = "/Kindergarten/2/index.html";
+    window.location.href = "/Games/Kindergarten/2/index.html";
 }
 
 function openUltrakill() {
-    window.location.href = "/ultrakill/index.html";
+    window.location.href = "/Games/ultrakill/index.html";
 }
 
 // TIME DISPLAY
