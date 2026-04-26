@@ -17,7 +17,7 @@ body {
 
     font-family: sans-serif;
 
-    cursor: url('/dog.png') 16 16, auto;
+    cursor: url('./Images/dog.cur'), auto;
 }
 
 /* INPUT */
@@ -228,4 +228,18 @@ button:hover {
 .note {
     font-size: 12px;
     opacity: 0.6;
+}
+
+#loginSection {
+    width: min(300px, 90vw);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#loginSection input,
+#loginSection button {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
 }
