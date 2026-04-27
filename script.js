@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const settingsBtn = document.getElementById("settingsBtn");
     const loginSection = document.getElementById("loginSection");
     const gameAccess = document.getElementById("gameAccess");
+    const popup = document.getElementById("popup");
     const input = document.getElementById("codeInput");
     const submitBtn = document.getElementById("submitBtn");
     const clickBtn = document.getElementById("clickBtn");
@@ -10,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (settingsBtn) settingsBtn.style.display = "block";
         if (loginSection) loginSection.style.display = "none";
         if (gameAccess) gameAccess.style.display = "block";
+        if (popup) popup.style.display = "block";
         loadCounter(); // Automatically load the annihilated count
     } else {
         // Hide settings button if no token found
