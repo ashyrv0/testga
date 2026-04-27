@@ -1,3 +1,4 @@
+/* MAIN CONTENT */
 :root {
     --bg: #0f1115;
     --text: #e6e6eb;
@@ -23,20 +24,27 @@ body {
 /* INPUT */
 input {
     width: 100%;
-    padding: 10px;
-    margin-top: 10px;
+    padding: 12px 16px;
 
     border: 1px solid #e6e6eb;
-    border-radius: 6px;
+    border-radius: 8px;
     background: #0f1115;
     color: #e6e6eb;
     outline: none;
     cursor: url('./Images/DogSelect.cur'), text;
 }
 
+input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(124, 111, 247, 0.2);
+}
+
+input::placeholder {
+    color: rgba(230, 230, 235, 0.4);
+}
+
 #codeInput {
     border: 1px solid transparent;
-    outline: none;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -45,10 +53,11 @@ button:disabled {
     cursor: not-allowed;
 }
 
+/* ERROR ANIMATION */
 @keyframes fadeError {
     0% {
         border-color: red;
-        box-shadow: 0 0 6px red;
+        box-shadow: 0 0 8px red;
     }
     100% {
         border-color: transparent;
@@ -57,14 +66,13 @@ button:disabled {
 }
 
 .input-error {
-    animation: fadeError 1s ease;
+    animation: fadeError 1.5s ease;
 }
 
 /* BUTTON */
 button {
     width: 100%;
-    margin-top: 10px;
-    padding: 10px;
+    padding: 12px 20px;
 
     border: none;
     border-radius: 6px;
@@ -73,10 +81,23 @@ button {
     color: white;
     cursor: pointer;
     user-select: none;
+    overflow: hidden;
 }
 
 button:hover {
     background: #3a4150;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+button:focus-visible {
+    outline: 2px solid #7c6ff7;
+    outline-offset: 2px;
 }
 
 /* POPUP*/
@@ -121,42 +142,55 @@ button:hover {
     cursor: pointer;
 }
 
-/* LAST UPDATED */
-.last-updated {
-    position: fixed;
-    bottom: 10px;
-    right: 10px;
-
-    font-size: 12px;
-    opacity: 0.6;
-    user-select: none;
-}
-
 #timeText {
     opacity: 0.8;
     font-size: 14px;
     margin-top: 5px;
 }
 
+/* LAST UPDATED */
+.last-updated {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+
+    font-size: 12px;
+    opacity: 0.4;
+    user-select: none;
+    transition: opacity 0.2s ease;
+}
+
+.last-updated:hover {
+    opacity: 0.8;
+}
+
 .made-by{
     position: fixed;
-    bottom: 10px;
+    bottom: 15px;
     left: 50%;
     transform: translateX(-50%);
     font-size: 12px;
-    opacity: 0.6;
+    opacity: 0.5;
     text-decoration: none;
+    transition: opacity 0.2s ease;
+    white-space: nowrap;
+}
+
+.made-by:hover {
+    opacity: 0.9;
 }
 
 .made-by a {
-    color: inherit;
-    text-decoration: underline;
-    text-underline-offset: 2px;
-    transition: color 0.25s ease;
+    color: #7c6ff7;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    font-weight: 500;
 }
 
 .made-by a:hover {
-    color: white;
+    color: #e6e6eb;
+    text-decoration: underline;
+    text-underline-offset: 3px;
 }
 
 /* button */
@@ -254,4 +288,9 @@ button:hover {
     width: 100%;
     box-sizing: border-box;
     margin: 0;
+}
+
+::selection {
+    background: rgba(124, 111, 247, 0.3);
+    color: var(--text);
 }
