@@ -2,6 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const input = document.getElementById("codeInput");
     const submitBtn = document.getElementById("submitBtn");
     const clickBtn = document.getElementById("clickBtn");
+    
+    Security.init();
 
     // disable submit at start
     submitBtn.disabled = true;
@@ -32,6 +34,34 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
+const Security = {
+    schoolList: ["deledao", "goguardian", "lightspeed", "linewize", "securly", ".edu/"],
+
+    isBlocked(url) {
+        try {
+            const domain = new URL(url, location.origin).hostname + "/";
+            return this.schoolList.some(s => domain.includes(s));
+        } catch {
+            return false;
+        }
+    },
+
+    init() {
+        const originalFetch = window.fetch;
+
+        window.fetch = function(url, options) {
+            if (Security.isBlocked(url)) return Promise.reject(new Error("Blocked"));
+            return originalFetch.apply(this, arguments);
+        };
+
+        const originalOpen = XMLHttpRequest.prototype.open;
+
+        XMLHttpRequest.prototype.open = function(method, url) {
+            if (Security.isBlocked(url)) return;
+            return originalOpen.apply(this, arguments);
+        };
+    }
+};
 
 // LOGIN
 async function checkCode() {
@@ -119,7 +149,7 @@ function openK2() {
 }
 
 function openUltrakill() {
-    window.location.href = "/Games/Ultrakill/index.html";
+    window.location.href = "/Games/ultrakill/index.html";
 }
 
 // TIME DISPLAY
@@ -198,6 +228,7 @@ blankBtn.onclick = () => {
         <iframe src="${location.href}" style="width:100%;height:100%;border:none;"></iframe>
     `);
 };
+
 
 const closeBtn = document.getElementById("closeSettings");
 
