@@ -31,6 +31,7 @@ input {
     background: #0f1115;
     color: #e6e6eb;
     outline: none;
+    cursor: url('./Images/DogSelect.cur'), text;
 }
 
 #codeInput {
@@ -41,7 +42,7 @@ input {
 
 button:disabled {
     opacity: 0.5;
-    cursor: not-allowed;
+    cursor: url('./Images/DogSelect.cur'), not-allowed;
 }
 
 @keyframes fadeError {
@@ -70,7 +71,7 @@ button {
 
     background: #2a2f3a;
     color: white;
-    cursor: pointer;
+    cursor: url('./Images/DogSelect.cur'), pointer;
     user-select: none;
 }
 
@@ -117,7 +118,7 @@ button:hover {
     background: transparent;
     border: none;
     color: white;
-    cursor: pointer;
+    cursor: url('./Images/DogSelect.cur'), pointer;
 }
 
 /* LAST UPDATED */
@@ -164,7 +165,7 @@ button:hover {
     background: #2a2f3a;
     color: white;
     border: none;
-    cursor: pointer;
+    cursor: url('./Images/dog.cur'), pointer;
 
     font-size: 18px;
 }
@@ -208,7 +209,7 @@ button:hover {
     border-radius: 8px;
 
     color: white;
-    cursor: pointer;
+    cursor: url('./Images/DogSelect.cur'), pointer;
 }
 
 .settings-panel input {
