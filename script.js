@@ -163,7 +163,7 @@ function openK2() {
 }
 
 function openUltrakill() {
-    window.location.href = "/Games/ultrakill/index.html";
+    window.location.href = "/Games/Ultrakill/index.html";
 }
 
 // TIME DISPLAY
