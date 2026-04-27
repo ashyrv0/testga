@@ -1,8 +1,21 @@
 document.addEventListener("DOMContentLoaded", () => {
+    const settingsBtn = document.getElementById("settingsBtn");
+    const loginSection = document.getElementById("loginSection");
+    const gameAccess = document.getElementById("gameAccess");
     const input = document.getElementById("codeInput");
     const submitBtn = document.getElementById("submitBtn");
     const clickBtn = document.getElementById("clickBtn");
-    
+
+    if (localStorage.getItem('accessToken')) {
+        if (settingsBtn) settingsBtn.style.display = "block";
+        if (loginSection) loginSection.style.display = "none";
+        if (gameAccess) gameAccess.style.display = "block";
+        loadCounter(); // Automatically load the annihilated count
+    } else {
+        // Hide settings button if no token found
+        if (settingsBtn) settingsBtn.style.display = "none";
+    }
+
     Security.init();
 
     // disable submit at start
@@ -87,6 +100,7 @@ async function checkCode() {
     document.getElementById("loginSection").style.display = "none";
     document.getElementById("gameAccess").style.display = "block";
     document.getElementById("popup").style.display = "block";
+    document.getElementById("settingsBtn").style.display = "block";
 
     loadCounter();
 } else {
@@ -160,7 +174,7 @@ function updateTime() {
     const now = new Date();
 
     const date = now.toLocaleDateString();
-    const time = now.toLocaleTimeString("en-GB", {
+    const time = now.toLocaleTimeString("en-US", {
         hour: "2-digit",
         minute: "2-digit",
         second: "2-digit",
@@ -179,6 +193,7 @@ const panicBtn = document.getElementById("panicKeyBtn");
 const urlInput = document.getElementById("panicUrl");
 const saveBtn = document.getElementById("saveSettings");
 const blankBtn = document.getElementById("blankBtn");
+const blobBtn = document.getElementById("blobBtn");
 
 let panicKey = localStorage.getItem("panicKey") || "`";
 let panicUrl = localStorage.getItem("panicUrl") || "https://www.google.com";
@@ -229,6 +244,12 @@ blankBtn.onclick = () => {
     `);
 };
 
+blobBtn.onclick = () => {
+const pageContent = `<html><body><h1>My Secret Site</h1></body></html>`; // Your full site code here
+    const blob = new Blob([pageContent], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+    window.location.href = url;
+};
 
 const closeBtn = document.getElementById("closeSettings");
 
