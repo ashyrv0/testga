@@ -17,7 +17,7 @@ body {
 
     font-family: sans-serif;
 
-    cursor: url('./Images/dog.cur'), auto;
+    /*cursor: url('./Images/dog.cur'), auto; */
 }
 
 /* INPUT */
@@ -42,7 +42,7 @@ input {
 
 button:disabled {
     opacity: 0.5;
-    cursor: url('./Images/DogSelect.cur'), not-allowed;
+    cursor: not-allowed;
 }
 
 @keyframes fadeError {
@@ -71,7 +71,7 @@ button {
 
     background: #2a2f3a;
     color: white;
-    cursor: url('./Images/DogSelect.cur'), pointer;
+    cursor: pointer;
     user-select: none;
 }
 
@@ -118,7 +118,7 @@ button:hover {
     background: transparent;
     border: none;
     color: white;
-    cursor: url('./Images/DogSelect.cur'), pointer;
+    cursor: pointer;
 }
 
 /* LAST UPDATED */
@@ -145,7 +145,18 @@ button:hover {
     transform: translateX(-50%);
     font-size: 12px;
     opacity: 0.6;
-    user-select: none;
+    text-decoration: none;
+}
+
+.made-by a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color 0.25s ease;
+}
+
+.made-by a:hover {
+    color: white;
 }
 
 /* button */
@@ -165,7 +176,7 @@ button:hover {
     background: #2a2f3a;
     color: white;
     border: none;
-    cursor: url('./Images/dog.cur'), pointer;
+    cursor: pointer;
 
     font-size: 18px;
 }
@@ -194,7 +205,7 @@ button:hover {
 
 .close-settings {
     position: absolute;
-    top: 20px;
+    top: 5px;
     right: 15px;
 
     width: 28px;
@@ -209,7 +220,7 @@ button:hover {
     border-radius: 8px;
 
     color: white;
-    cursor: url('./Images/DogSelect.cur'), pointer;
+    cursor: pointer;
 }
 
 .settings-panel input {
@@ -223,7 +234,7 @@ button:hover {
 }
 
 .settings-panel h3 {
-    margin-top: 40px;
+    margin: -35px 0px 15px 0px;
 }
 
 .note {
