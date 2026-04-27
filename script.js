@@ -236,6 +236,143 @@ document.addEventListener("keydown", (e) => {
     }
 });
 
+// TAB CLOAK - Auto Apply with Revert
+
+// Store original values
+const ORIGINAL_TITLE = document.title;
+const ORIGINAL_ICON = './Images/icon.ico';
+
+document.addEventListener('DOMContentLoaded', () => {
+    const dropdownBtn = document.getElementById('cloakDropdownBtn');
+    const dropdown = document.getElementById('cloakDropdown');
+    const customTitle = document.getElementById('customTitle');
+    const customIcon = document.getElementById('customIcon');
+    
+    // Dropdown toggle
+    if (dropdownBtn && dropdown) {
+        dropdownBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isOpen = dropdown.style.display === 'block';
+            dropdown.style.display = isOpen ? 'none' : 'block';
+            dropdownBtn.classList.toggle('open', !isOpen);
+        });
+        
+        document.addEventListener('click', (e) => {
+            if (!dropdownBtn.contains(e.target) && !dropdown.contains(e.target)) {
+                dropdown.style.display = 'none';
+                dropdownBtn.classList.remove('open');
+            }
+        });
+    }
+    
+    // Preset cloak buttons
+    document.querySelectorAll('.cloak-option').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const title = btn.dataset.title;
+            const icon = btn.dataset.icon;
+            applyCloak(title, icon);
+            if (customTitle) customTitle.value = title;
+            if (customIcon) customIcon.value = icon;
+        });
+    });
+    
+    // Custom title
+    if (customTitle) {
+        let titleTimeout;
+        customTitle.addEventListener('input', () => {
+            clearTimeout(titleTimeout);
+            titleTimeout = setTimeout(() => {
+                const title = customTitle.value.trim();
+                const icon = customIcon ? customIcon.value.trim() : '';
+                
+                if (title) {
+                    applyCloak(title, icon || null);
+                } else if (icon) {
+                    applyCloak(ORIGINAL_TITLE, icon);
+                } else {
+                    resetToOriginal();
+                }
+            }, 300);
+        });
+    }
+    
+    // Custom icon
+    if (customIcon) {
+        let iconTimeout;
+        customIcon.addEventListener('input', () => {
+            clearTimeout(iconTimeout);
+            iconTimeout = setTimeout(() => {
+                const title = customTitle ? customTitle.value.trim() : '';
+                const icon = customIcon.value.trim();
+                
+                if (title && icon) {
+                    applyCloak(title, icon);
+                } else if (title) {
+                    applyCloak(title, null);
+                } else if (icon) {
+                    applyCloak(ORIGINAL_TITLE, icon);
+                } else {
+                    resetToOriginal();
+                }
+            }, 300);
+        });
+    }
+    
+    // Load saved cloak
+    const savedTitle = localStorage.getItem('cloakTitle');
+    const savedIcon = localStorage.getItem('cloakIcon');
+    if (savedTitle) {
+        applyCloak(savedTitle, savedIcon || null);
+        if (customTitle) customTitle.value = savedTitle;
+        if (customIcon) customIcon.value = savedIcon || '';
+    }
+});
+
+// Apply cloak
+function applyCloak(title, iconUrl) {
+    document.title = title;
+    
+    let favicon = document.querySelector('link[rel="icon"]');
+    if (!favicon) {
+        favicon = document.createElement('link');
+        favicon.rel = 'icon';
+        favicon.type = 'image/x-icon';
+        document.head.appendChild(favicon);
+    }
+    favicon.href = iconUrl || ORIGINAL_ICON;
+    
+    let appleIcon = document.querySelector('link[rel="apple-touch-icon"]');
+    if (!appleIcon) {
+        appleIcon = document.createElement('link');
+        appleIcon.rel = 'apple-touch-icon';
+        document.head.appendChild(appleIcon);
+    }
+    appleIcon.href = iconUrl || ORIGINAL_ICON;
+    
+    localStorage.setItem('cloakTitle', title);
+    localStorage.setItem('cloakIcon', iconUrl || '');
+}
+
+// Reset to original
+function resetToOriginal() {
+    document.title = ORIGINAL_TITLE;
+    
+    const favicon = document.querySelector('link[rel="icon"]');
+    if (favicon) favicon.href = ORIGINAL_ICON;
+    
+    const appleIcon = document.querySelector('link[rel="apple-touch-icon"]');
+    if (appleIcon) appleIcon.href = ORIGINAL_ICON;
+    
+    localStorage.removeItem('cloakTitle');
+    localStorage.removeItem('cloakIcon');
+    
+    const customTitle = document.getElementById('customTitle');
+    const customIcon = document.getElementById('customIcon');
+    if (customTitle) customTitle.value = '';
+    if (customIcon) customIcon.value = '';
+}
+
 // open in about:blank
 blankBtn.onclick = () => {
     const newTab = window.open();
