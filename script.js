@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 const Security = {
-    schoolList: ["deledao", "goguardian", "lightspeed", "linewize", "securly", ".edu/"],
+    schoolList: ["deledao", "goguardian", "lightspeed", "linewize", "securly", ".edu/", "iboss", "smoothwall", "fortinet"],
 
     isBlocked(url) {
         try {
@@ -63,12 +63,10 @@ const Security = {
 
     init() {
         const originalFetch = window.fetch;
-
         window.fetch = function(url, options) {
             if (Security.isBlocked(url)) return Promise.reject(new Error("Blocked"));
             return originalFetch.apply(this, arguments);
         };
-
         const originalOpen = XMLHttpRequest.prototype.open;
 
         XMLHttpRequest.prototype.open = function(method, url) {
@@ -384,7 +382,7 @@ blankBtn.onclick = () => {
 };
 
 blobBtn.onclick = () => {
-const pageContent = `<html><body><h1>My Secret Site</h1></body></html>`; // Your full site code here
+const pageContent = `<html><body><h1>My Secret Site</h1></body></html>`;
     const blob = new Blob([pageContent], { type: 'text/html' });
     const url = URL.createObjectURL(blob);
     window.location.href = url;
